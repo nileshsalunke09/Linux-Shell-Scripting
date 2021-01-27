@@ -7,8 +7,7 @@
 
 Is there any difference making decision in Real life and with Computers? Well real life decision are quite
 complicated to all of us and computers even don't have that much power to understand our real life
-decisions. What computer know is 0 (zero) and 1 that is Yes or No. To make this idea clear, lets play
-some game (WOW!) with bc - Linux calculator program.
+decisions. What computer know is 0 (zero) and 1 that is Yes or No. To make this idea clear, lets checkout with bc - Linux calculator program.
 
 ### #bc
 
@@ -87,6 +86,8 @@ Write shell script as:
 ![Screen Shot 2021-01-27 at 11.57.35 PM.png]({{site.baseurl}}/Screen Shot 2021-01-27 at 11.57.35 PM.png)
 
 Run above script as:
+
+
 ![Screen Shot 2021-01-28 at 12.00.40 AM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 12.00.40 AM.png)
 
 Shell script name is showfile ($0) and nilesh is argument (which is $1).Then shell compare it as follows:
@@ -114,11 +115,17 @@ Run above script as:
 
 #### **Answers**
 
-(A) ![Screen Shot 2021-01-28 at 12.09.01 AM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 12.09.01 AM.png)
+(A)
 
-(B)![Screen Shot 2021-01-28 at 12.09.40 AM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 12.09.40 AM.png)
+![Screen Shot 2021-01-28 at 12.09.01 AM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 12.09.01 AM.png)
 
-(C)![Screen Shot 2021-01-28 at 12.10.55 AM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 12.10.55 AM.png)
+(B)
+
+![Screen Shot 2021-01-28 at 12.09.40 AM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 12.09.40 AM.png)
+
+(C)
+
+![Screen Shot 2021-01-28 at 12.10.55 AM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 12.10.55 AM.png)
 
 
 - # **test command or [ expr ]**
@@ -283,7 +290,3 @@ Try above script as follows:
 
 Above program gives error for last run, here integer comparison is expected therefore error like "./elf: [: -gt: unary operator
 expected" occurs, but still our program notify this error to user by providing message "Opps! a is not number, give number".
-
-
-
-
