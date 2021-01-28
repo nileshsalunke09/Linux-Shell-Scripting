@@ -360,3 +360,13 @@ In above syntax BEFORE the first iteration, expr1 is evaluated. This is usually 
 All the statements between do and done is executed repeatedly UNTIL the value of expr2 is TRUE.
 AFTER each iteration of the loop, expr3 is evaluated. This is usually use to increment a loop counter.
 
+![Screen Shot 2021-01-28 at 6.05.32 PM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 6.05.32 PM.png)
+
+Run the above script as follows:
+
+![Screen Shot 2021-01-28 at 6.05.59 PM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 6.05.59 PM.png)
+
+In above example, first expression (i = 0), is used to set the value variable i to zero.
+Second expression is condition i.e. all statements between do and done executed as long as expression 2 (i.e continue as long as the value of variable i is less than or equel to 5) is TRUE.
+Last expression i++ increments the value of i by 1 i.e. it's equivalent to i = i + 1 statement.
+
