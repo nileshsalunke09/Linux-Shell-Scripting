@@ -290,3 +290,73 @@ Try above script as follows:
 
 Above program gives error for last run, here integer comparison is expected therefore error like "./elf: [: -gt: unary operator
 expected" occurs, but still our program notify this error to user by providing message "Opps! a is not number, give number".
+
+
+- # **Loops in Shell Scripts**
+
+Loop defined as:
+
+"Computer can repeat particular instruction again and again, until particular condition satisfies. A group of instruction that is executed repeatedly is called a loop."
+
+Bash supports:
+
+- for loop
+- while loop
+
+Note that in each and every loop,
+
+(a) First, the variable used in loop condition must be initialized, then execution of the loop begins.
+
+(b) A test (condition) is made at the beginning of each iteration.
+
+(c) The body of loop ends with a statement that modifies the value of the test (condition) variable.
+
+### **for Loop**
+
+
+	for { variable name } in { list }
+	do
+		execute one for each item in the list until the list is
+		not finished (And repeat all statement between do and done)
+	done
+    
+write the script as follows:
+
+![Screen Shot 2021-01-28 at 5.54.19 PM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 5.54.19 PM.png)
+
+
+Run it above script as follows:
+
+![Screen Shot 2021-01-28 at 5.54.53 PM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 5.54.53 PM.png)
+
+
+The for loop first creates i variable and assigned a number to i from the list of number from 1 to 5, The shell execute echo statement for each assignment of i. (This is usually know as iteration) This process will continue until all the items in the list were not finished, because of this it will repeat 5 echo statements.
+
+
+Write a script to multiple a given number 10 times.
+
+![Screen Shot 2021-01-28 at 5.56.33 PM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 5.56.33 PM.png)
+
+Save above script and run it as:
+
+![Screen Shot 2021-01-28 at 5.57.23 PM.png]({{site.baseurl}}/Screen Shot 2021-01-28 at 5.57.23 PM.png)
+
+This happened because we have not supplied given number for which we want multiplication table, Hence script is showing Error message, Syntax and usage of our script. This is good idea if our program takes some argument, let the user know what is use of the script and how to used the script.
+
+Note that to terminate our script we used 'exit 1' command which takes 1 as argument (1 indicates error and therefore script is terminated).
+
+Even you can use following syntax:
+
+	for (( expr1; expr2; expr3 ))
+	do
+		.....
+		...
+		repeat all statements between do and
+		done until expr2 is TRUE
+	Done
+
+In above syntax BEFORE the first iteration, expr1 is evaluated. This is usually used to initialize variables for the loop.
+
+All the statements between do and done is executed repeatedly UNTIL the value of expr2 is TRUE.
+AFTER each iteration of the loop, expr3 is evaluated. This is usually use to increment a loop counter.
+
