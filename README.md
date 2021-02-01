@@ -370,3 +370,99 @@ In above example, first expression (i = 0), is used to set the value variable i 
 Second expression is condition i.e. all statements between do and done executed as long as expression 2 (i.e continue as long as the value of variable i is less than or equel to 5) is TRUE.
 Last expression i++ increments the value of i by 1 i.e. it's equivalent to i = i + 1 statement.
 
+
+### **Nesting of for Loop**
+
+The if statement can nested, similarly loop statement can be nested. You can nest the for loop. To understand the nesting of for loop see the following shell script.
+
+![Screen Shot 2021-02-01 at 10.42.02 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 10.42.02 AM.png)
+
+
+Run the above script as follows.
+
+![Screen Shot 2021-02-01 at 10.42.35 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 10.42.35 AM.png)
+
+
+Here, for each value of i the inner loop is cycled through 5 times, with the varible j taking values from 1 to 5. The inner for loop terminates when the value of j exceeds 5, and the outer loop terminets when the value of i exceeds 5.
+
+
+Following script is quite intresting, it prints the chess board on screen.
+
+![Screen Shot 2021-02-01 at 10.44.25 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 10.44.25 AM.png)
+
+
+Run the above script as follows:
+
+![Screen Shot 2021-02-01 at 10.45.02 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 10.45.02 AM.png)
+
+
+Above shell script cab be explained as follows:
+
+- **for (( i = 1; i <= 9; i++ ))** = Begin the outer loop which runs 9 times., and the outer
+loop terminets when the value of i exceeds 9
+
+- **for (( j = 1 ; j <= 9; j++ ))** = Begins the inner loop, for each value of i the inner loop is
+cycled through 9 times, with the varible j taking values from 1 to 9. The inner for loop terminates when the value of j exceeds 9.
+
+- **tot=`expr $i + $j`  
+tmp=`expr $tot % 2`** = See for even and odd number positions using these
+statements.
+
+- **if [ $tmp -eq 0 ]; then**
+
+  **echo -e -n "\033[47m "**
+
+  **else**
+
+  **echo -e -n "\033[40m "**
+
+  **fi**  
+  
+If even number posiotion print the white colour block
+(using echo -e -n "\033[47m " statement); otherwise for
+odd postion print the black colour box (using echo -e -n
+"\033[40m " statement). This statements are responsible to
+print entier chess board on screen with alternet colours.
+
+
+- **done = End of inner loop**
+
+- **echo -e -n "\033[40m"** = Make sure its black background as we always have on our
+terminals.
+
+- **echo ""** = Print the blank line.
+
+- **done** = End of outer loop and shell scripts get terminted by printing
+the chess board.
+
+**Exercise**
+
+**1. Write shell script using for loop to print the following patterns on screen.**
+
+![Screen Shot 2021-02-01 at 10.58.04 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 10.58.04 AM.png)
+
+
+Script: 
+
+![Screen Shot 2021-02-01 at 10.58.34 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 10.58.34 AM.png)
+
+Output:
+
+![Screen Shot 2021-02-01 at 11.01.18 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 11.01.18 AM.png)
+
+
+**2.Write shell script using for loop to print the following patterns on screen.**
+
+![Screen Shot 2021-02-01 at 10.59.50 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 10.59.50 AM.png)
+
+Script:
+
+![Screen Shot 2021-02-01 at 11.00.36 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 11.00.36 AM.png)
+
+Output: 
+
+![Screen Shot 2021-02-01 at 11.00.23 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 11.00.23 AM.png)
+
+
+
+
