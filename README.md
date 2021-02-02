@@ -464,5 +464,38 @@ Output:
 ![Screen Shot 2021-02-01 at 11.00.23 AM.png]({{site.baseurl}}/Screen Shot 2021-02-01 at 11.00.23 AM.png)
 
 
+### **while loop**
+
+Loop is executed as long as given condition is true.
+
+Syntax:
+
+	while [ condition ]
+	do
+		command1
+		command2
+		command3
+		..
+		....
+	done
+
+![Screen Shot 2021-02-02 at 8.53.53 AM.png]({{site.baseurl}}/Screen Shot 2021-02-02 at 8.53.53 AM.png)
+
+
+Save it and try as
+
+chmod 755 nt1
+
+./nt1 7
+
+Above loop can be explained as follows:
+
+- n=$1 = Set the value of command line argument to variable n. (Here it's set to 7 )
+- i=1 = Set variable i to 1
+- while [ $i -le 10 ] = This is our loop condition, here if value of i is less than 10 then, shell execute all statements between do and done.
+- do = Start loop.
+- echo "$n * $i = `expr $i \* $n`" = Print multiplication table as 7 * 1 = 7 Here each time value of variable n is multiply be i.
+- i=`expr $i + 1` = Increment i by 1 and store result to i. ( i.e. i=i+1).
+- done = Loop stops here if i is not less than 10 i.e. condition of loop is not true. Hence loop is terminated.
 
 
