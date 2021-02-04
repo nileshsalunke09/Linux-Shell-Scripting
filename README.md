@@ -531,10 +531,9 @@ First script will check, that if $1(first command line argument) is given or not
 
 ![Screen Shot 2021-02-04 at 8.33.45 AM.png]({{site.baseurl}}/Screen Shot 2021-02-04 at 8.33.45 AM.png)
 
-Note that esac is always required to indicate end of case statement.
-
 ![Screen Shot 2021-02-04 at 8.38.34 AM.png]({{site.baseurl}}/Screen Shot 2021-02-04 at 8.38.34 AM.png)
 
+Note that esac is always required to indicate end of case statement.
 
 
 
