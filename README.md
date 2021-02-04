@@ -499,3 +499,43 @@ Above loop can be explained as follows:
 - done = Loop stops here if i is not less than 10 i.e. condition of loop is not true. Hence loop is terminated.
 
 
+### **The case Statement**
+
+The case statement is good alternative to Multilevel if-then-else-fi statement. It enable you to match several values against one variable. Its easier to read and write.
+
+Syntax:
+	case $variable-name in
+		pattern1) command
+					...
+					..
+					command;;
+		pattern2) command
+					...
+					..
+					command;;
+		patternN) command
+					...
+					..
+					command;;
+		*) command
+					...
+					..
+					command;;
+		esac
+        
+        
+The $variable-name is compared against the patterns until a match is found. The shell then executes all the statements up to the two semicolons that are next to each other. The default is *) and its executed if no match is found.     
+
+
+First script will check, that if $1(first command line argument) is given or not, if NOT given set value of rental variable to "*** Unknown vehicle",if command line arg is supplied/given set value of rental variable to given value (command line arg). The $rental is compared against the patterns until a match is found. For first test run its match with van and it will show output "For van Rs.10 per k/m." For second test run it print, "For car Rs.20 per k/m". And for last run, there is no match for Maruti-800, hence default i.e. *) is executed and it prints, "Sorry, I can not get a Maruti-800 for you".
+
+![Screen Shot 2021-02-04 at 8.33.45 AM.png]({{site.baseurl}}/Screen Shot 2021-02-04 at 8.33.45 AM.png)
+
+Note that esac is always required to indicate end of case statement.
+
+![Screen Shot 2021-02-04 at 8.38.34 AM.png]({{site.baseurl}}/Screen Shot 2021-02-04 at 8.38.34 AM.png)
+
+
+
+
+
