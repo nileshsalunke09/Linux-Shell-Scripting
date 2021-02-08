@@ -643,7 +643,7 @@ if command1 is executed successfully then shell will run command2 and if command
 
 Example:
 
-- $ rm myf && echo "File is removed successfully" || echo "File is not removed"
+- _$ rm myf && echo "File is removed successfully" || echo "File is not removed"_
 
 If file (myf) is removed successful (exist status is zero) then "echo File is removed successfully"
 
