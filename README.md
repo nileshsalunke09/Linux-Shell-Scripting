@@ -536,5 +536,116 @@ First script will check, that if $1(first command line argument) is given or not
 Note that esac is always required to indicate end of case statement.
 
 
+# **Chapter 4: Advanced Shell Scripting Commands.**
 
+- Functions
+- User interface
+- Conditional execution
+- File Descriptors
+- traps
+- Multiple command line args handling etc
+
+
+### **/dev/null - Use to send unwanted output of program**
+
+Syntax:	
+
+	command > /dev/null
+    
+$ ls > /dev/null
+Output of above command is not shown on screen its send to this special file. The /dev directory contains other device files. The files in this directory mostly represent peripheral devices such disks like floppy disk, sound card, line printers etc.
+
+
+### **Local and Global Shell variable (export command)**
+
+Normally all our variables are local. Local variable can be used in same shell, if you load another copy of shell (by typing the /bin/bash at the $ prompt) then new shell ignored all old shell's variable. For e.g. Consider following example
+
+	$ vech=Bus
+	$ echo $vech
+	Bus
+	$ /bin/bash
+	$ echo $vech
+	NOTE:-Empty line printed
+	$ vech=Car
+	$ echo $vech
+	Car
+	$ exit
+	$ echo $vech
+	Bus
+    
+- vech=Bus - Create new local variable 'vech' with Bus as value in first shell.
+- echo $vech - Print the contains of variable vech
+- /bin/bash - Now load second shell in memory (Which ignores all old shell's variable)
+- echo $vech - Print the contains of variable vech
+- vech=Car - Create new local variable 'vech' with Car as value in second shell
+- echo $vech - Print the contains of variable vech
+- exit - Exit from second shell return to first shell
+- echo $vech - Print the contains of variable vech (Now you can see first shells variable and its value)
+
+
+    
+    
+Global shell defined as:
+
+"You can copy old shell's variable to new shell (i.e. first shells variable to seconds shell), such variable is know as Global Shell variable."
+
+
+To set global varible you have to use export command.
+
+	export variable1, variable2,.....variableN
+    
+    
+	$ vech=Bus
+	$ echo $vech
+	Bus
+	$ export vech
+	$ /bin/bash
+	$ echo $vech
+	Bus
+	$ exit
+	$ echo $vech
+	Bus	
+    
+- vech=Bus - Create new local variable 'vech' with Bus as value in first shell.
+- echo $vech - Print the contains of variable vech.
+- export vech - Export first shells variable to second shell i.e. global varible.
+- /bin/bash - Now load second shell in memory (Old shell's variable is accessed from second shell,
+if they are exported ).
+- echo $vech - Print the contains of variable vech.
+- exit - Exit from second shell return to first shell.
+- echo $vech - Print the contains of variable vech.
+
+
+### **Conditional execution i.e. && and ||**
+
+The control operators are && (read as AND) and || (read as OR). The syntax for AND list is as follows
+
+Syntax:
+
+	command1 && command2
+
+command2 is executed if, and only if, command1 returns an exit status of zero.
+
+The syntax for OR list as follows
+
+Syntax:
+
+	command1 || command2
+
+command2 is executed if and only if command1 returns a non-zero exit status.
+
+You can use both as follows
+Syntax:
+
+- command1 && comamnd2 if exist status is zero || command3 if exit status is non-zero
+
+if command1 is executed successfully then shell will run command2 and if command1 is not successful then command3 is executed.
+
+Example:
+
+- $ rm myf && echo "File is removed successfully" || echo "File is not removed"
+
+If file (myf) is removed successful (exist status is zero) then "echo File is removed successfully"
+
+statement is executed, otherwise "echo File is not removed" statement is executed (since exist status is non-zero)
 
