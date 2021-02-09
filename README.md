@@ -649,3 +649,160 @@ If file (myf) is removed successful (exist status is zero) then "echo File is re
 
 statement is executed, otherwise "echo File is not removed" statement is executed (since exist status is non-zero)
 
+
+### **I/O Redirection and file descriptors**
+
+As you know I/O redirectors are used to send output of command to file or to read input from file.
+Consider following example
+
+- $ cat > myf
+
+This is my file
+
+^D (press CTRL + D to save file)
+
+Above command send output of cat command to myf file
+
+- $ cal
+
+Above command prints calendar on screen, but if you wish to store this calendar to file then give
+command
+
+- $ cal > mycal
+
+The cal command send output to mycal file. This is called output redirection.
+
+The sort command takes input from keyboard and then sorts the number and prints (send) output to screen itself. If you wish to take input from file (for sort command) give command as follows:
+
+$ cat > nos
+
+10
+
+-20
+
+11
+
+2
+
+^D
+
+$ sort < nos
+
+-20
+
+2
+
+10
+
+11
+
+First you created the file nos using cat command, then nos file given as input to sort command which prints sorted numbers. This is called input redirection.
+
+In Linux (And in C programming Language) your keyboard, screen etc are all treated as files. Following are name of such files
+
+|Standard File|File Descriptors number|Use|Example|
+|---|---|---|---|
+|stdin|0|as Standard input|Keyboard|
+|stdout|1|as Standard output|Screen|
+|stderr|2|as Standard error|Screen|
+
+
+
+By default in Linux every program has three files associated with it, (when we start our program these three files are automatically opened by your shell). The use of first two files (i.e. stdin and stdout) , are already seen by us. The last file stderr (numbered as 2) is used by our program to print error on screen. You can redirect the output from a file descriptor directly to file with 
+following syntax
+
+Syntax:
+
+- file-descriptor-number>filename
+    
+Examples: (Assume the file bad_file_name111 does not exists)
+
+- $ rm bad_file_name111
+
+- rm: cannot remove `bad_file_name111': No such file or directory
+
+Above command gives error as output, since you don't have file. Now if we try to redirect this
+error-output to file, it can not be send (redirect) to file, try as follows:
+
+- $ rm bad_file_name111 > er
+
+Still it prints output on stderr as rm: cannot remove `bad_file_name111': No such file or directory, And if you see er file as $ cat er , this file is empty, since output is send to error device and you can not redirect it to copy this error-output to your file 'er'. To overcome this problem you have to use following
+
+command:
+
+- $ rm bad_file_name111 2>er
+
+Note that no space are allowed between 2 and >, The 2>er directs the standard error output to file. 2 number is default number (file descriptors number) of stderr file.
+
+Write a shell script as follows:
+
+![Screen Shot 2021-02-09 at 11.29.32 AM.png]({{site.baseurl}}/Screen Shot 2021-02-09 at 11.29.32 AM.png)
+
+Run it as follows:
+
+![Screen Shot 2021-02-09 at 11.30.43 AM.png]({{site.baseurl}}/Screen Shot 2021-02-09 at 11.30.43 AM.png)
+
+For first sample run , our script prints error message indicating that you have not given two number.
+
+For second sample run, you have redirected output of script to file er1, since it's error we have to show it to user, It means we have to print our error message on stderr not on stdout. To overcome this problem
+
+replace above echo statements as follows
+
+echo "Error : Number are not supplied" 1>&2
+
+echo "Usage : $0 number1 number2" 1>&2
+
+Now if you run it as follows:
+
+- $ ./demoscr > er1
+
+Error : Number are not supplied
+
+- Usage : ./demoscr number1 number2
+
+It will print error message on stderr and not on stdout. The 1>&2 at the end of echo statement, directs the standard output (stdout) to standard error (stderr) device.
+
+
+### **Functions**
+
+Syntax:
+
+	function-name ( )
+	{
+		command1
+		command2
+		.....
+		...
+		commandN
+		return
+	}	
+    
+Where function-name is name of you function, that executes series of commands. A return statement will terminate the function. 
+
+Example:
+
+Type SayHello() at $ prompt as follows
+
+	$ SayHello()
+	{
+	echo "Hello $LOGNAME, Have nice computing"
+	return
+	}
+
+To execute this SayHello() function just type it name as follows:
+
+	$ SayHello
+
+	Hello ec2-user, Have nice computing.
+    
+This way you can call function. Note that after restarting your computer you will loss this 
+
+SayHello()
+
+function, since its created for current session only. To overcome this problem and to add you own
+function to automate some of the day today life task, add your function to /etc/bashrc file. To add function to this file you must logon as root. Following is the sample /etc/bashrc file with today() function, which is used to print formatted date. First logon as root or if you already logon with your name (your login is not root), and want to move to root account, then you can type following command , when asked for password type root (administrators) password.
+
+
+
+
+
