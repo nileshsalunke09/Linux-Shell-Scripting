@@ -978,56 +978,45 @@ Instead of
 
 All the shell script command can be explained as follows:
 
-|Command(s)/Statements|Explanation|
-|-	|-	|
-|while [ "$1" ]
-do|Begins the while loop; continue the while loop as long as script reads the all command line option|
-
-|Command(s)/Statements|Explanation|
-|-	|-	|
-|if [ "$1" = "-b" ]; then
-ob="$2"|Now start to parse the command line (args) option using if command our script understands the -b and -n options only all other option are invalid. If option is -b then stores the value of
-second command line arg to variable ob (i.e. if arg is -b 16 then store the 16 to ob)|
+![Screen Shot 2021-02-10 at 7.22.13 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.22.13 PM.png)
 
 
-|Command(s)/Statements|Explanation|
-|-	|-	|
-|case $ob in
-16) basesystem="Hex";;
-8) basesystem="Oct";;
-2) basesystem="bin";;
-*) basesystem="Unknown";;
-esac|For easy understanding of conversion we store the respective number base systems corresponding string to basesystem variable. If base system is 16 then store the Hex to basesystem and so on. This is done using case statement.|
+**Begins the while loop; continue the while loop as long as script reads the all command line option.**
 
-|Command(s)/Statements|Explanation|
-|-	|-	|
-|shift 2|Once first two command line options (args) are read, we need next two command line option
-(args). shift 2 will moves the current values stored in the positional parameters (command line args) to the left two position.|
+![Screen Shot 2021-02-10 at 7.22.27 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.22.27 PM.png)
 
-|Command(s)/Statements|Explanation|
-|-	|-	|
-|elif [ "$1" = "-n" ]
-then
-num="$2"
-shift 2|Now check the next command line option and if its -n option then stores the value of second command line arg to variable num (i.e. if arg is -n 500 then store the 500 to num) and shift 2 will moves the current values stored in the positional parameters (command line args)
-to the left two position.|
 
-|Command(s)/Statements|Explanation|
-|-	|-	|
-|else
-echo "Program $0 does not recognize option $1"
-exit 1
-fi|If command line option is not -n or -b then print the error "Program ./convert does not recognize option xx" on screen and terminates the shell script using exit 1 statement.|
+**Now start to parse the command line (args) option using if command our script understands the -b and -n options only all other option are invalid. If option is -b then stores the value of
+second command line arg to variable ob (i.e. if arg is -b 16 then store the 16 to ob).**
 
-|Command(s)/Statements|Explanation|
-|-	|-	|
-|done|End of loop as we read all the valid command line option/args.|
+![Screen Shot 2021-02-10 at 7.22.43 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.22.43 PM.png)
 
-|Command(s)/Statements|Explanation|
-|-	|-	|
-|output=`echo "obase=$ob;ibase=10; $num;" | BC`
-echo "$num Decimal number = $output in $basesystem number
-system(base=$ob)"|Now convert the given number to given number system using BC Show the converted number on screen.|
+
+**For easy understanding of conversion we store the respective number base systems corresponding string to basesystem variable. If base system is 16 then store the Hex to basesystem and so on. This is done using case statement.**
+
+![Screen Shot 2021-02-10 at 7.22.55 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.22.55 PM.png)
+
+
+**Once first two command line options (args) are read, we need next two command line option (args). shift 2 will moves the current values stored in the positional parameters (command
+line args) to the left two position.**
+
+
+![Screen Shot 2021-02-10 at 7.23.11 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.23.11 PM.png)
+
+
+**Now check the next command line option and if its -n option then stores the value of second
+command line arg to variable num (i.e. if arg is -n 500 then store the 500 to num) and shift 2 will moves the current values stored in the positional parameters (command line args)
+to the left two position.**
+
+![Screen Shot 2021-02-10 at 7.23.26 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.23.26 PM.png)
+
+
+**If command line option is not -n or -b then print the error "Program ./convert does not recognize option xx" on screen and terminates the shell script using exit 1 statement.**
+
+![Screen Shot 2021-02-10 at 7.24.09 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.24.09 PM.png)
+
+
+**End of loop as we read all the valid command line option/args and  Now convert the given number to given number system using BC Show the converted number on screen.**
 
 As you can see shift command can use to parse the command line (args) option. This is useful if you have limited number of command line option. If command line options are too many then this approach works slowly as well as complex to write and maintained. You need to use another shell built in command - getopts. Next section shows the use of getopts command. You still need the shift command in conjunction with getopts for other shell scripting work.
 
