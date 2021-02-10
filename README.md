@@ -803,6 +803,107 @@ function, since its created for current session only. To overcome this problem a
 function to automate some of the day today life task, add your function to /etc/bashrc file. To add function to this file you must logon as root. Following is the sample /etc/bashrc file with today() function, which is used to print formatted date. First logon as root or if you already logon with your name (your login is not root), and want to move to root account, then you can type following command , when asked for password type root (administrators) password.
 
 
+Open file /etc/bashrc using vi and goto the end of file (by pressing shift+G) and type the today()
+function:
+
+
+![Screen Shot 2021-02-10 at 4.36.54 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 4.36.54 PM.png)
+
+
+Save the file and exit it.
+
+To run function first completely logout by typing exit at the $ prompt (Or press CTRL + D, Note you may have to type exit (CTRL +D) twice if you login to root account by using su command) ,then login and type $ today , this way today() is available to all user in your system, If you want to add particular function to particular user then open .bashrc file in users home directory.
+
+![Screen Shot 2021-02-10 at 4.39.05 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 4.39.05 PM.png)
+
+
+**Why to write function?**
+
+- Saves lot of time.
+- Avoids rewriting of same code again and again
+- Program is easier to write.
+- Program maintains is very easy.
+
+### **User Interface and dialog utility-Part I**
+
+
+Good program/shell script must interact with users. You can accomplish this as follows:
+
+(1) Use command line arguments (args) to script when you want interaction i.e. pass command line args to script as : $ ./sutil.sh foo 4, where foo & 4 are command line args passed to shell script sutil.sh.
+
+(2) Use statement like echo and read to read input into variable from the prompt. For e.g. Write script as:
+
+![Screen Shot 2021-02-10 at 4.44.32 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 4.44.32 PM.png)
+
+
+Save it and run as:
+
+![Screen Shot 2021-02-10 at 4.45.13 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 4.45.13 PM.png)
+
+
+Even you can create menus to interact with user, first show menu option, then ask user to choose menu item, and take appropriate action according to selected menu item, this technique is show in following script:
+
+![Screen Shot 2021-02-10 at 4.52.13 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 4.52.13 PM.png)
+
+
+Above all statement explained in following table:
+
+|Statement   |Explanation   |
+|---|---|
+|while   |Start infinite loop, this loop will only break if you select 5 ( i.e. Exit/Stop menu item) as your menu choice   |
+|do   |Start loop   |  
+|clear   |Clear the screen, each and every time   |
+|echo "-------------------------------------"
+echo " Main Menu "
+echo "-------------------------------------"
+echo "[1] Show Todays date/time"
+echo "[2] Show files in current directory"
+echo "[3] Show calendar"
+echo "[4] Start editor to write letters"
+echo "[5] Exit/Stop"
+echo "======================="|Show menu on screen with menu items|
+|echo -n "Enter your menu choice [1-5]: "|Ask user to enter menu item number|
+|read yourch|Read menu item number from user|
+|case $yourch in
+1) echo "Today is `date` , press a key. . ." ; read ;;
+2) echo "Files in `pwd`" ; ls -l ; echo "Press a key. . ." ; read ;;
+3) cal ; echo "Press a key. . ." ; read ;;
+4) vi ;;
+5) exit 0 ;;
+*) echo "Opps!!! Please select choice 1,2,3,4, or 5"; echo "Press a key. . ." ; read ;; esac|Take appropriate action according to selected menu item, If menu item is not between 1 - 5, then show error and ask user to input number between 1-5 again|
+|done|Stop loop , if menu item number is 5 ( i.e. Exit/Stop)|
+
+
+User interface usually includes, menus, different type of boxes like info box, message box, Input box etc. In Linux shell (i.e. bash) there is no built-in facility available to create such user interface, But there is one utility supplied with Red Hat Linux version 6.0 called dialog, which is used to create different type of boxes like info box, message box, menu box, Input box etc. Next section shows you how to use dialog utility.
+
+### **trap command**
+
+Consider following script example:
+
+![Screen Shot 2021-02-10 at 5.33.16 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 5.33.16 PM.png)
+
+Now if you press ctrl + c , while running this script, script get terminated. The ctrl + c here work as signal, When such signal occurs its send to all process currently running in your system. Now consider following shell script:
+
+![Screen Shot 2021-02-10 at 5.43.20 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 5.43.20 PM.png)
+
+Run it
+
+It first ask you main database file where all appointment of the day is stored, if no such database file found, file is created, after that it open one temporary file in /tmp directory, and puts today's date in that file. Then one infinite loop begins, which ask appointment title, time and remark, if this information is correct its written to temporary file, After that, script asks user , whether he/she wants to add next appointment record, if yes then next record is added , otherwise all records are copied from temporary file to database file and then loop will be terminated. You can view your database file by using cat command. Now problem is that while running this script, if you press CTRL + C, your shell script gets terminated and temporary file are left in /tmp directory. For e.g. try it as follows:
+
+- $./testsign1
+
+After given database file name and after adding at least one appointment record to temporary file press CTRL+C, Our script get terminated, and it left temporary file in /tmp directory, you can check this by giving command as follows
+
+- $ ls /tmp/input*
+
+Our script needs to detect such signal (event) when occurs; To achieve this we have to first detect Signal using trap command.
+
+Syntax:
+
+	trap {commands} {signal number list}
+
+
+
 
 
 
