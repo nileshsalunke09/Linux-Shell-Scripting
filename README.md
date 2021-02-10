@@ -824,7 +824,7 @@ To run function first completely logout by typing exit at the $ prompt (Or press
 - Program is easier to write.
 - Program maintains is very easy.
 
-### **User Interface and dialog utility-Part I**
+### **User Interface**
 
 
 Good program/shell script must interact with users. You can accomplish this as follows:
@@ -901,9 +901,17 @@ Our script needs to detect such signal (event) when occurs; To achieve this we h
 Syntax:
 
 	trap {commands} {signal number list}
+    
+|Signal Number|When occurs|
+|-	|-	|
+|0|shell exit|
+|1|hangup|
+|2|interrupt (CTRL+C)|
+|3|quit|
+|9|kill (cannot be caught)|
 
 
+To catch signal in above script, put trap statement before calling Take_input1 function as trap del_file 2 ., Here trap command called del_file() when 2 number interrupt ( i.e. CTRL+C ) occurs. 
 
-
-
+Open above script in editor and modify it so that at the end it will look like as follows:
 
