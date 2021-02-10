@@ -848,30 +848,22 @@ Even you can create menus to interact with user, first show menu option, then as
 
 Above all statement explained in following table:
 
-|Statement   |Explanation   |
-|---|---|
-|while   |Start infinite loop, this loop will only break if you select 5 ( i.e. Exit/Stop menu item) as your menu choice   |
-|do   |Start loop   |  
-|clear   |Clear the screen, each and every time   |
-|echo "-------------------------------------"
-echo " Main Menu "
-echo "-------------------------------------"
-echo "[1] Show Todays date/time"
-echo "[2] Show files in current directory"
-echo "[3] Show calendar"
-echo "[4] Start editor to write letters"
-echo "[5] Exit/Stop"
-echo "======================="|Show menu on screen with menu items|
-|echo -n "Enter your menu choice [1-5]: "|Ask user to enter menu item number|
-|read yourch|Read menu item number from user|
-|case $yourch in
-1) echo "Today is `date` , press a key. . ." ; read ;;
-2) echo "Files in `pwd`" ; ls -l ; echo "Press a key. . ." ; read ;;
-3) cal ; echo "Press a key. . ." ; read ;;
-4) vi ;;
-5) exit 0 ;;
-*) echo "Opps!!! Please select choice 1,2,3,4, or 5"; echo "Press a key. . ." ; read ;; esac|Take appropriate action according to selected menu item, If menu item is not between 1 - 5, then show error and ask user to input number between 1-5 again|
-|done|Stop loop , if menu item number is 5 ( i.e. Exit/Stop)|
+![Screen Shot 2021-02-10 at 7.29.18 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.29.18 PM.png)
+
+**Start infinite loop, this loop will only break if you select 5 ( i.e. Exit/Stop menu item) as your menu
+choice.**
+
+![Screen Shot 2021-02-10 at 7.29.52 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.29.52 PM.png)
+
+**Start loop and Clear the screen, each and every time.**
+
+![Screen Shot 2021-02-10 at 7.30.56 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.30.56 PM.png)
+
+**Show menu on screen with menu items, Ask user to enter menu item number, and Read menu item number from user.**
+
+![Screen Shot 2021-02-10 at 7.31.56 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 7.31.56 PM.png)
+
+**Read menu item number from user, Take appropriate action according to selected menu item, If menu item is not between 1 - 5, then show error and ask user to input number between 1-5 again and Stop loop , if menu item number is 5 ( i.e. Exit/Stop)**
 
 
 User interface usually includes, menus, different type of boxes like info box, message box, Input box etc. In Linux shell (i.e. bash) there is no built-in facility available to create such user interface, But there is one utility supplied with Red Hat Linux version 6.0 called dialog, which is used to create different type of boxes like info box, message box, menu box, Input box etc. Next section shows you how to use dialog utility.
