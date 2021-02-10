@@ -915,3 +915,127 @@ To catch signal in above script, put trap statement before calling Take_input1 f
 
 Open above script in editor and modify it so that at the end it will look like as follows:
 
+![Screen Shot 2021-02-10 at 6.07.45 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 6.07.45 PM.png)
+
+![Screen Shot 2021-02-10 at 6.08.07 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 6.08.07 PM.png)
+
+Run the script as:
+
+- $ ./testsign1
+
+After giving database file name and after giving appointment title press CTRL+C, Here we have already captured this CTRL + C signal (interrupt), so first our function del_file() is called, in which it gives message as "* * * CTRL + C Trap Occurs (removing temporary file)* * * " and then it remove our temporary file and then exit with exit status 1. Now check /tmp directory as follows
+
+- $ ls /tmp/input*
+
+Now Shell will report no such temporary file exit.
+
+### **The shift Command**
+
+The shift command moves the current values stored in the positional parameters (command line args) to the left one position. For example, if the values of the current positional parameters are:
+
+- $1 = -f $2 = foo $3 = bar
+
+and you executed the shift command the resulting positional parameters would be as follows:
+
+- $1 = foo $2 = bar
+
+Write the following shell script
+
+![Screen Shot 2021-02-10 at 6.27.31 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 6.27.31 PM.png)
+
+You can also move the positional parameters over more than one place by specifying a number with the shift command. The following command would shift the positional parameters two places:
+
+shift 2
+
+- But where to use shift command?
+
+You can use shift command to parse the command line (args) option. For example consider the following simple shell script:
+
+![Screen Shot 2021-02-10 at 6.29.29 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 6.29.29 PM.png)
+
+Run the script as follows:
+
+![Screen Shot 2021-02-10 at 6.31.12 PM.png]({{site.baseurl}}/Screen Shot 2021-02-10 at 6.31.12 PM.png)
+
+Above script is run in variety of ways. First three sample run converts the number 500 ( -n 500 ) to respectively 1F4 (hexadecimal number i.e. -b 16), 764 (octal number i.e. -b 16) , 111110100 (binary number i.e. -b 16). It use -n and -b as command line option which means:
+
+-b {base-system i.e. 16,8,2 to which -n number to convert}
+
+-n {Number to convert to -b base-system}
+
+Fourth and fifth sample run produce the error "Program ./convert does not recognize option -v". This is because these two (-v & -t) are not the valid command line option.
+
+Sixth sample run produced output "500 Decimal number = 13310 in Unknown number system(base=4)".
+Because the base system 4 is unknown to our script.
+
+Last sample run shows that command line options can given different ways i.e. you can use it as follows:
+
+- $ ./convert -n 500 -b 16
+
+Instead of
+
+- $ ./convert -b 16 -n 500
+
+All the shell script command can be explained as follows:
+
+|Command(s)/Statements|Explanation|
+|-	|-	|
+|while [ "$1" ]
+do|Begins the while loop; continue the while loop as long as script reads the all command line option|
+
+|Command(s)/Statements|Explanation|
+|-	|-	|
+|if [ "$1" = "-b" ]; then
+ob="$2"|Now start to parse the command line (args) option using if command our script understands the -b and -n options only all other option are invalid. If option is -b then stores the value of
+second command line arg to variable ob (i.e. if arg is -b 16 then store the 16 to ob)|
+
+
+|Command(s)/Statements|Explanation|
+|-	|-	|
+|case $ob in
+16) basesystem="Hex";;
+8) basesystem="Oct";;
+2) basesystem="bin";;
+*) basesystem="Unknown";;
+esac|For easy understanding of conversion we store the respective number base systems corresponding string to basesystem variable. If base system is 16 then store the Hex to basesystem and so on. This is done using case statement.|
+
+|Command(s)/Statements|Explanation|
+|-	|-	|
+|shift 2|Once first two command line options (args) are read, we need next two command line option
+(args). shift 2 will moves the current values stored in the positional parameters (command line args) to the left two position.|
+
+|Command(s)/Statements|Explanation|
+|-	|-	|
+|elif [ "$1" = "-n" ]
+then
+num="$2"
+shift 2|Now check the next command line option and if its -n option then stores the value of second command line arg to variable num (i.e. if arg is -n 500 then store the 500 to num) and shift 2 will moves the current values stored in the positional parameters (command line args)
+to the left two position.|
+
+|Command(s)/Statements|Explanation|
+|-	|-	|
+|else
+echo "Program $0 does not recognize option $1"
+exit 1
+fi|If command line option is not -n or -b then print the error "Program ./convert does not recognize option xx" on screen and terminates the shell script using exit 1 statement.|
+
+|Command(s)/Statements|Explanation|
+|-	|-	|
+|done|End of loop as we read all the valid command line option/args.|
+
+|Command(s)/Statements|Explanation|
+|-	|-	|
+|output=`echo "obase=$ob;ibase=10; $num;" | BC`
+echo "$num Decimal number = $output in $basesystem number
+system(base=$ob)"|Now convert the given number to given number system using BC Show the converted number on screen.|
+
+As you can see shift command can use to parse the command line (args) option. This is useful if you have limited number of command line option. If command line options are too many then this approach works slowly as well as complex to write and maintained. You need to use another shell built in command - getopts. Next section shows the use of getopts command. You still need the shift command in conjunction with getopts for other shell scripting work.
+
+
+
+
+
+
+
+
+
