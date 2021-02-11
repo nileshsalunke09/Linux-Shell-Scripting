@@ -1013,10 +1013,60 @@ to the left two position.**
 As you can see shift command can use to parse the command line (args) option. This is useful if you have limited number of command line option. If command line options are too many then this approach works slowly as well as complex to write and maintained. You need to use another shell built in command - getopts. Next section shows the use of getopts command. You still need the shift command in conjunction with getopts for other shell scripting work.
 
 
+### **getopts command**
+
+This command is used to check valid command line argument are passed to script. Usually used in while
+loop.
+
+Syntax:
+
+		getopts {optstring} {variable1}
+        
+getopts is used by shell to parse command line argument.
+
+As defined in man pages:
+
+"optstring contains the option letters to be recognized; if a letter is followed by a colon, the option is
+expected to have an argument, which should be separated from it by white space. Each time it is invoked,
+getopts places the next option in the shell variable variable1, When an option requires an argument,
+getopts places that argument into the variable OPTARG. On errors getopts diagnostic messages are
+printed when illegal options or missing option arguments are encountered. If an illegal option is seen,
+getopts places ? into variable1."
+
+Example:
+
+We have script called ani which has syntax as ani -n -a -s -w -d
+
+Options: These are optional argument
+
+-n name of animal
+
+-a age of animal
+
+-s sex of animal
+
+-w weight of animal
+
+-d demo values (if any of the above options are used their values are not taken)
+
+Above ani script is as follows:
 
 
+![Screen Shot 2021-02-11 at 10.53.52 AM.png]({{site.baseurl}}/Screen Shot 2021-02-11 at 10.53.52 AM.png)
 
 
+![Screen Shot 2021-02-11 at 10.54.17 AM.png]({{site.baseurl}}/Screen Shot 2021-02-11 at 10.54.17 AM.png)
 
 
+Save it and run as follows
 
+Because of getopts, we can pass command line argument in different style. Following are invalid
+options for ani script.
+
+![Screen Shot 2021-02-11 at 11.00.00 AM.png]({{site.baseurl}}/Screen Shot 2021-02-11 at 11.00.00 AM.png)
+
+
+![Screen Shot 2021-02-11 at 11.00.23 AM.png]({{site.baseurl}}/Screen Shot 2021-02-11 at 11.00.23 AM.png)
+
+
+-c is not one of the valid options.
