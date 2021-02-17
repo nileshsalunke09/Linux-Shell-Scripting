@@ -1070,3 +1070,113 @@ options for ani script.
 
 
 -c is not one of the valid options.
+
+
+# **Chapter 5: Essential Utilities for Power User.**
+
+### **Prepering for Quick Tour of essential utilities**
+
+**Cut Utility**
+
+General Syntax of cut utility:
+
+	cut -f{field number} {file-name}
+
+
+Use of Cut utility: Selecting portion of a file.
+
+For this part of tutorial create sname and smark data files as follows (Using text editor of your choice) Note Each data block is separated from the other by TAB character i.e. while creating the file if you type 11 then press "tab" key, and then write Vivek (as shown in following files):
+
+
+![Screen Shot 2021-02-17 at 9.21.19 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.21.19 AM.png)
+
+
+![Screen Shot 2021-02-17 at 9.21.40 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.21.40 AM.png)
+
+
+Suppose from sname file you wish to print name of student on-screen, then from shell (Your command
+prompt i.e. $).
+
+cut utility cuts out selected data from sname file. To select Sr.no. field from sname give command as follows:
+
+![Screen Shot 2021-02-17 at 9.22.19 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.22.19 AM.png)
+
+- cut: Name of cut utility
+- -f1: Using (-f) option, you are specifying the extraction field number. (In this example
+its 1 i.e. first field).
+- sname: File which is used by cut utility and which is use as input for cut utility.
+
+
+You can redirect output of cut utility as follows:
+
+![Screen Shot 2021-02-17 at 9.25.26 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.25.26 AM.png)
+
+**Paste Utility**
+
+General Syntax of paste utility:
+
+	paste {file1} {file2}
+
+Use of paste utility: Putting lines together.
+
+Now enter following command at shell prompt
+
+![Screen Shot 2021-02-17 at 9.27.33 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.27.33 AM.png)
+
+Paste utility join textual information together. To clear your idea try following command at shell prompt:
+
+![Screen Shot 2021-02-17 at 9.28.04 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.28.04 AM.png)
+
+
+Paste utility is useful to put textual information together located in various files.
+
+
+**Join Utility**
+
+Syntax:
+	
+    join {file1} {file2}
+    
+Use of join utility: The join utility joins, lines from separate files.
+
+Now enter following command at shell prompt:
+
+![Screen Shot 2021-02-17 at 9.30.05 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.30.05 AM.png)
+
+
+Here students names are matched with their appropriate marks. How ? join utility uses the Sr.No. field to join to files. Notice that Sr.No. is the first field in both sname and smark file.
+
+
+**tr utility**
+
+Syntax:
+
+	tr {pattern-1} {pattern-2}
+    
+Use of tr utility: To translate range of characters into other range of characters.
+
+![Screen Shot 2021-02-17 at 9.32.54 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.32.54 AM.png)
+
+You can clearly see that each occurrence of character 'N' is replace with '3' and '2' with 'x'. tr utilitytranslate specific characters into other specific characters or range of characters into other ranges.
+
+N -> 3
+
+2 -> x
+
+![Screen Shot 2021-02-17 at 9.34.36 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.34.36 AM.png)
+
+
+Press CTRL + C to terminate.
+
+Here tr translate range of characters (i.e. small a to z) into other (i.e. to Capital A to Z) ranges.
+
+After typing following paragraph, I came to know my mistake that entire paragraph must be in lowercase characters, how to correct this mistake? (Hint - Use tr utility).
+
+![Screen Shot 2021-02-17 at 9.41.53 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.41.53 AM.png)
+
+![Screen Shot 2021-02-17 at 9.42.06 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.42.06 AM.png)
+
+
+
+
+
