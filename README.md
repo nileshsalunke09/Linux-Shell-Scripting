@@ -1074,7 +1074,7 @@ options for ani script.
 
 # **Chapter 5: Essential Utilities for Power User.**
 
-### **Prepering for Quick Tour of essential utilities**
+### **Preparing for Quick Tour of essential utilities**
 
 **Cut Utility**
 
@@ -1176,6 +1176,15 @@ After typing following paragraph, I came to know my mistake that entire paragrap
 
 ![Screen Shot 2021-02-17 at 9.42.06 AM.png]({{site.baseurl}}/Screen Shot 2021-02-17 at 9.42.06 AM.png)
 
+
+**Data manipulation using awk utility**
+
+Before learning more about awk create data file using any text editor or simply vi:
+
+![Screen Shot 2021-02-23 at 9.39.06 AM.png]({{site.baseurl}}/Screen Shot 2021-02-23 at 9.39.06 AM.png)
+
+
+awk utility, select each record from file containing the word "good" and performs the action of printing the third field (Quantity of available goods.).
 
 
 
