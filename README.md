@@ -1244,26 +1244,11 @@ Above command prints those lines which are unique. For e.g. our original file co
 
 Syntax:
 
-	grep word-to-find {file-name}
+	grep `"word-to-find"` {file-name}
     
-
 Create text file as follows:
 
 ![Screen Shot 2021-02-23 at 10.14.20 AM.png]({{site.baseurl}}/Screen Shot 2021-02-23 at 10.14.20 AM.png)
 
 
 grep will locate all lines for the "too" pattern and print all (matched) such line on-screen. grep prints too, as well as cartoons and toon; because grep treat "too" as expression. Expression by grep is read as the letter t followed by o and so on. So if this expression is found any where on line its printed. grep don't understand words.
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
