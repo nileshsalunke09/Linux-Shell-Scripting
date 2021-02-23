@@ -1244,7 +1244,7 @@ Above command prints those lines which are unique. For e.g. our original file co
 
 Syntax:
 
-	grep `"word-to-find"` {file-name}
+	`grep "word-to-find" {file-name}`
     
 Create text file as follows:
 
