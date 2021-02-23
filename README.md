@@ -1179,6 +1179,10 @@ After typing following paragraph, I came to know my mistake that entire paragrap
 
 **Data manipulation using awk utility**
 
+General Syntax of awk utility:
+
+	awk pattern action {file-name}
+
 Before learning more about awk create data file using any text editor or simply vi:
 
 ![Screen Shot 2021-02-23 at 9.39.06 AM.png]({{site.baseurl}}/Screen Shot 2021-02-23 at 9.39.06 AM.png)
@@ -1187,5 +1191,79 @@ Before learning more about awk create data file using any text editor or simply 
 awk utility, select each record from file containing the word "good" and performs the action of printing the third field (Quantity of available goods.).
 
 
+![Screen Shot 2021-02-23 at 9.41.29 AM.png]({{site.baseurl}}/Screen Shot 2021-02-23 at 9.41.29 AM.png)
+
+
+For $ awk '/good/ { print $3 }' inventory example,
+
+
+- /good/ - Is the pattern used for selecting lines from file.
+- {print $3} - This is the action; if pattern found, print on of such action. Here $3 means third record in selected record. 
+- awk - File which is used by awk utility which is use as input for awk utility.
+
+
+**sed utility - Editing file without using editor**
+
+Syntax:
+
+ 	sed {expression} {file}
+    
+    
+Use of sed utility: sed is used to edit (text transformation) on given stream i.e a file or may be input from a pipeline.
+    
+
+For this part of tutorial create data file as follows
+
+![Screen Shot 2021-02-23 at 9.48.16 AM.png]({{site.baseurl}}/Screen Shot 2021-02-23 at 9.48.16 AM.png)
+
+
+sed utility is used to find every occurrence of tea and replace it with word milk. sed - Steam line editor which uses 'ex' editors command for editing text files without starting ex. (Cool!, isn't it? no use of text editor to edit anything!!!)
+
+
+- /tea/ - Find tea word or select all lines having the word tea.
+- s//milk/ - Replace (substitute) the word milk for the tea.
+- g - Replace (substitute) the word milk for the tea.
+
+
+**Removing duplicate lines using uniq utility**
+
+General Syntax of uniq utility:
+
+	uniq {file-name}
+    
+
+Create text file personame as follows:
+    
+![Screen Shot 2021-02-23 at 10.09.34 AM.png]({{site.baseurl}}/Screen Shot 2021-02-23 at 10.09.34 AM.png)
+
+Above command prints those lines which are unique. For e.g. our original file contains 12333 twice, so additional copies of 12333 are deleted. But if you examine output of uniq, you will notice that 12333 is gone (Duplicate), and "what still I remeber that name" remains as its. Because the uniq utility compare only adjacent lines, duplicate lines must be next to each other in the file.
+
+
+
+**Finding matching pattern using grep utility**
+
+Syntax:
+
+	grep word-to-find {file-name}
+    
+
+Create text file as follows:
+
+![Screen Shot 2021-02-23 at 10.14.20 AM.png]({{site.baseurl}}/Screen Shot 2021-02-23 at 10.14.20 AM.png)
+
+
+grep will locate all lines for the "too" pattern and print all (matched) such line on-screen. grep prints too, as well as cartoons and toon; because grep treat "too" as expression. Expression by grep is read as the letter t followed by o and so on. So if this expression is found any where on line its printed. grep don't understand words.
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
