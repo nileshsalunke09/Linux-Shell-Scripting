@@ -1252,3 +1252,180 @@ Create text file as follows:
 
 
 grep will locate all lines for the "too" pattern and print all (matched) such line on-screen. grep prints too, as well as cartoons and toon; because grep treat "too" as expression. Expression by grep is read as the letter t followed by o and so on. So if this expression is found any where on line its printed. grep don't understand words.
+
+
+# **Chapter 5: Learning expressions with ex.**
+
+What does "cat" mean to you ?
+
+
+One its the word cat, (second cat is an animal! I know 'tom' cat), If same question is asked to computer (not computer but to grep utility) then grep will try to find all occurrence of "cat" word (remember grep read word "cat" as the c letter followed by a and followed by t) including cat, copycat, catalog etc.
+
+
+Pattern defined as:
+"Set of characters (may be words or not) is called pattern."
+For e.g. "dog", "celeron", "mouse", "ship" etc are all example of pattern. Pattern can be change from one to another, for e.g. "ship" as "sheep".
+
+
+Metacharacters defined as:
+"If patterns are identified using special characters then such special characters are known as metacharacters". 
+
+Expressions defined as:
+
+"Combination of pattern and metacharacters is known as expressions (regular expressions)."
+
+
+Regular expressions are used by different Linux utilities like
+● grep
+● awk
+● sed
+
+So you must know how to construct regular expression. In the next part of LSST you will learn how to construct regular expression using ex editor.
+
+**Getting started with ex**
+
+You can start the ex editor by typeing ex at shell prompt:
+
+
+Syntax:
+
+	ex {file-name}
+    
+Example:
+
+	$ ex demofile
+    
+The : (colon) is ex prompt where you can type ex text editor command or regular expression. Its time to open our demofile, use ex as follows:  
+
+
+![Screen Shot 2021-03-02 at 9.00.04 AM.png]({{site.baseurl}}/Screen Shot 2021-03-02 at 9.00.04 AM.png)
+
+
+As you can see, you will get : prompt, here you can type ex command, type q and press ENTER key to
+exit from ex as shown follows: (remember commands are case sensetive)
+
+After typing the q command you are exit to shell prompt.
+
+
+**Printing text on-screen**
+
+First open the our demofile as follows:
+
+	ex demofile
+    
+
+Entering Ex mode. Type "visual" to go to Normal mode.
+
+Now type 'p' in front of : as follow and press enter
+    
+    
+- NOTE By default p command will print current line, in our case its the last line of above text file.
+
+- Now if you want to print 1st line to next 5 line (i.e. 1 to 5 lines) then give command
+	
+    :1,5 p
+    
+NOTE Here 1,5 is the address. if single number is used (e.g. 5 p) it indicate line number and if two numbers are separated by comma its range of line.
+
+- Printing particular line
+
+To print 2nd line from our file give command
+	
+    :2 p
+
+- Printing entire file on-screen
+
+	`:1,$ p`
+    
+NOTE Here 1 is 1st line and $ is the special character of ex which mean last-line character. So 1,$ means print from 1st line to last-line character (i.e. end of file). Here p stands print.
+
+- Printing line number with our text
+
+	`:set number`
+	`:1,3 p`
+    
+
+NOTE This command prints number next to each line. If you don't want number you can turn off
+numbers by issuing following command
+
+	:set nonumber
+	:1,3 p
+    
+**Deleting lines**
+
+Give command
+	
+    :1, d
+    
+
+NOTE Here 1 is 1st line and d command indicates deletes (Which deletes the 1st line).
+
+You can even delete range of line by giving command as
+
+	:1,5 d
+
+**Copying lines**
+
+Give command as follows
+	
+    :1,4 co $
+	:1,$ p
+    
+    
+NOTE Here 1,4 means copy 1 to 4 lines; co command stands for copy; $ is end of file. So it mean copy first four line to end of file. You can delete this line as follows
+	
+    :18,21 d    
+
+
+**Searching the words**
+
+(a) Give following command
+	
+    :/linux/ p
+    
+Note In ex you can specify address (line) using number for various operation. This is useful if you know the line number in advance, but if you don't know line number, then you can use contextual address to print line on-screen. In above example /linux/ is contextual address which is constructed by surrounding a regular expression with two slashes. And p is print command of ex.
+
+**Quitting the ex**
+
+Give command
+	
+    :q
+    
+
+**Find and Replace (Substituting regular expression)**
+
+Give command as follows
+	
+    :8 p
+    
+    :8 s/lerarns/learn/
+	
+    :p
+
+    
+![Screen Shot 2021-03-02 at 9.16.33 AM.png]({{site.baseurl}}/Screen Shot 2021-03-02 at 9.16.33 AM.png)
+
+Note Using above command, you are substituting the word "currently" to "now"
+
+Above command can be explained as follows:
+
+- 3 - go to line 3 
+- s - substitute
+- currently - Target pattern
+- now - If target found replace with now.
+
+
+
+![Screen Shot 2021-03-02 at 9.20.09 AM.png]({{site.baseurl}}/Screen Shot 2021-03-02 at 9.20.09 AM.png)
+
+Using above command, you are substituting all lines i.e. s command will find all of the address line for the pattern "Linux" and if pattern "Linux" found substitute pattern "Unix".    
+
+- :1,$ - Substitute for all line
+- s - substitute
+- /Linux - target pattern
+- Unix - Substitute to the target.
+
+
+
+
+    
